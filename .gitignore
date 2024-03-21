@@ -60,3 +60,8 @@
 /var/
 ###< symfony/framework-bundle ###
 /.env
+
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+###< symfony/phpunit-bridge ###
+
