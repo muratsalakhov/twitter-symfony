@@ -4,9 +4,13 @@ declare(strict_types=1);
 
 namespace App\Tests\Tools;
 
+/**
+ * Трейт для получения сервисов через DI контейнер
+ */
 trait DITrait
 {
     /**
+     * Получить сервис через DI контейнер
      * @template T
      *
      * @param class-string<T> $service
