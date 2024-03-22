@@ -9,11 +9,15 @@ RUN apk add --no-cache  \
     oniguruma-dev  \
     autoconf  \
     bash \
-    linux-headers
+    linux-headers \
+    postgresql-dev
 
 # Xdebug
 RUN pecl install xdebug && docker-php-ext-enable xdebug
 COPY ./docker/php-fpm/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+
+# PostgreSQL
+RUN docker-php-ext-install pdo_pgsql pgsql
 
 # Configure non-root user.
 ARG PUID=1000
