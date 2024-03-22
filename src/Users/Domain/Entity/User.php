@@ -29,12 +29,11 @@ class User implements AuthUserInterface
     #[ORM\Column(type: 'datetime_immutable')]
     private DateTimeImmutable $registeredAt;
 
-    public function __construct(string $name, string $email, string $password)
+    public function __construct(string $name, string $email)
     {
         $this->ulid = UlidService::generate();
         $this->name = $name;
         $this->email = $email;
-        $this->password = $password;
         $this->registeredAt = new DateTimeImmutable();
     }
 
@@ -48,9 +47,19 @@ class User implements AuthUserInterface
         return $this->name;
     }
 
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
     public function getEmail(): string
     {
         return $this->email;
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
     }
 
     public function getPassword(): string
@@ -58,8 +67,28 @@ class User implements AuthUserInterface
         return $this->password;
     }
 
+    public function setPassword(string $password): void
+    {
+        $this->password = $password;
+    }
+
     public function getRegisteredAt(): DateTimeImmutable
     {
         return $this->registeredAt;
+    }
+
+    public function getRoles(): array
+    {
+        return []; // todo
+    }
+
+    public function eraseCredentials(): void
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->email;
     }
 }
