@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace App\Users\Domain\Entity;
 
+use App\Shared\Domain\Security\AuthUserInterface;
 use App\Shared\Domain\Service\UlidService;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: '')]
 #[ORM\Table(name: 'users_users')]
-class User
+class User implements AuthUserInterface
 {
     #[ORM\Id()]
     #[ORM\Column(type: 'ulid', unique: true)]
