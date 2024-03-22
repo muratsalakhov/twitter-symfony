@@ -1,6 +1,6 @@
 <?php
 
-namespace Feature\Api;
+namespace App\Tests\Feature\Shared\Controller;
 
 use JsonException;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
