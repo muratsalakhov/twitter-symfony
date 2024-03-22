@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Feature\Users\Infrastructure\Repository;
 
 use App\Tests\Tools\DITrait;
+use App\Tests\Tools\TransactionTrait;
 use App\Users\Application\Factory\UserFakeFactory;
 use App\Users\Infrastructure\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -12,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 class UserRepositoryTest extends WebTestCase
 {
     use DITrait;
+    use TransactionTrait;
 
     private UserRepository $userRepository;
 
@@ -23,6 +25,15 @@ class UserRepositoryTest extends WebTestCase
 
         $this->userRepository = $this->getService(UserRepository::class);
         $this->userFakeFactory = $this->getService(UserFakeFactory::class);
+
+        $this->beginTransaction();
+    }
+
+    protected function tearDown(): void
+    {
+        $this->rollbackTransaction();
+
+        parent::tearDown();
     }
 
     public function test_user_added_successfully(): void
