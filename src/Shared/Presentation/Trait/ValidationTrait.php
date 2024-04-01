@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Shared\Presentation\Validation;
+namespace App\Shared\Presentation\Trait;
 
 use App\Shared\Presentation\Exception\ValidationException;
 use JsonException;
