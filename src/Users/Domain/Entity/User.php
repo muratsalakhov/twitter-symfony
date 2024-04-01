@@ -9,7 +9,7 @@ use App\Shared\Domain\Service\UlidService;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: '')]
+#[ORM\Entity]
 #[ORM\Table(name: 'users_users')]
 class User implements AuthUserInterface
 {

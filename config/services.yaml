@@ -38,3 +38,8 @@ services:
     Faker\Generator:
         factory: [ 'Faker\Factory', 'create' ]
         arguments: ['ru_RU']
+
+    # модуль Users
+    App\Users\Infrastructure\Repository\UserRepository:
+        tags:
+            - { name: 'doctrine.repository_service' }
