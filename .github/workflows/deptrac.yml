@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Setup
-        uses: ./.github/actions/static-analysis-setup
+        uses: ./.github/actions/static-analysis-setup.yml
 
       - name: Run deptrac analyze layers
         run: vendor/bin/deptrac analyze --config-file=deptrac-layers.yaml
@@ -32,7 +32,7 @@ jobs:
 
     steps:
       - name: Setup
-        uses: ./.github/actions/static-analysis-setup
+        uses: ./.github/actions/static-analysis-setup.yml
 
       - name: Run deptrac analyze modules
         run: vendor/bin/deptrac analyze --config-file=deptrac-modules.yaml
