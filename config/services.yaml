@@ -22,3 +22,24 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\*\Application\Factory\:
+        namespace: App\
+        public: true
+        resource: '../src/*/Application/Factory'
+        exclude: '../src/Shared/*'
+
+    App\*\Domain\Factory\:
+        namespace: App\
+        public: true
+        resource: '../src/*/Domain/Factory'
+        exclude: '../src/Shared/*'
+
+    Faker\Generator:
+        factory: [ 'Faker\Factory', 'create' ]
+        arguments: ['ru_RU']
+
+    # модуль Users
+    App\Users\Infrastructure\Repository\UserRepository:
+        tags:
+            - { name: 'doctrine.repository_service' }

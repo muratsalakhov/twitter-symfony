@@ -1,5 +1,14 @@
 controllers:
     resource:
-        path: ../src/Shared/Infrastructure/Controller/
-        namespace: App\Shared\Infrastructure\Controller
+        path: ../src/Shared/Presentation/Controller/
+        namespace: App\Shared\Presentation\Controller
+    type: attribute
+
+api_login_check:
+    path: /api/login_check
+
+users_controllers:
+    resource:
+        path: ../src/Users/Presentation/Controller/
+        namespace: App\Users\Presentation\Controller
     type: attribute
