@@ -18,3 +18,9 @@ php-cs-fixer:
 
 php-cs-fixer-diff:
 	docker-compose -f ./docker/docker-compose.yml exec php-fpm vendor/bin/php-cs-fixer fix --dry-run --diff
+
+deptrac-layers:
+	docker-compose -f ./docker/docker-compose.yml exec php-fpm vendor/bin/deptrac analyze --config-file=deptrac-layers.yaml
+
+deptrac-modules:
+	docker-compose -f ./docker/docker-compose.yml exec php-fpm vendor/bin/deptrac analyze --config-file=deptrac-modules.yaml

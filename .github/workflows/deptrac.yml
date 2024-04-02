@@ -1,0 +1,82 @@
+name: Deptrac
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deptrac-layers:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Prepare .env file
+        run: |
+          cp .env.test .env
+          echo "APP_ENV=dev" >> .env
+          echo "DATABASE_URL=sqlite:///%kernel.project_dir%/var/app.db" >> .env
+        shell: bash
+
+      - name: Setup PHP with extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, xml
+          tools: composer, php-cs-fixer
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+        shell: bash
+
+      - name: Run deptrac analyze layers
+        run: vendor/bin/deptrac analyze --config-file=deptrac-layers.yaml
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.composer/cache
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+  deptrac-modules:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Prepare .env file
+        run: |
+          cp .env.test .env
+          echo "APP_ENV=dev" >> .env
+          echo "DATABASE_URL=sqlite:///%kernel.project_dir%/var/app.db" >> .env
+        shell: bash
+
+      - name: Setup PHP with extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, xml
+          tools: composer, php-cs-fixer
+
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+        shell: bash
+
+      - name: Run deptrac analyze modules
+        run: vendor/bin/deptrac analyze --config-file=deptrac-modules.yaml
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.composer/cache
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-

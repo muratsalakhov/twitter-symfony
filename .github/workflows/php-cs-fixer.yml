@@ -16,11 +16,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Prepare .env file\
+      - name: Prepare .env file
         run: |
           cp .env.test .env
           echo "APP_ENV=dev" >> .env
           echo "DATABASE_URL=sqlite:///%kernel.project_dir%/var/app.db" >> .env
+        shell: bash
 
       - name: Setup PHP with extensions
         uses: shivammathur/setup-php@v2
@@ -31,6 +32,7 @@ jobs:
 
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress --no-suggest
+        shell: bash
 
       - name: Run PHP CS Fixer
         run: vendor/bin/php-cs-fixer fix --dry-run --diff --verbose
