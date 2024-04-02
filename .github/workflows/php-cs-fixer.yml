@@ -13,24 +13,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Prepare .env file\
-        run: |
-          cp .env.test .env
-          echo "APP_ENV=dev" >> .env
-          echo "DATABASE_URL=sqlite:///%kernel.project_dir%/var/app.db" >> .env
-
-      - name: Setup PHP with extensions
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.3'
-          extensions: mbstring, xml
-          tools: composer, php-cs-fixer
-
-      - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
+      - name: Setup
+        uses: ./.github/actions/static-analysis-setup
 
       - name: Run PHP CS Fixer
         run: vendor/bin/php-cs-fixer fix --dry-run --diff --verbose
