@@ -7,7 +7,7 @@ namespace App\Tests\Tools;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**
- * Трейт для использования транзакций при выполнении тестов
+ * Трейт для использования транзакций при выполнении тестов.
  */
 trait TransactionTrait
 {
@@ -16,8 +16,7 @@ trait TransactionTrait
     protected EntityManagerInterface $entityManager;
 
     /**
-     * Начать транзакцию
-     * @return void
+     * Начать транзакцию.
      */
     protected function beginTransaction(): void
     {
@@ -26,8 +25,7 @@ trait TransactionTrait
     }
 
     /**
-     * Откатить транзакцию
-     * @return void
+     * Откатить транзакцию.
      */
     protected function rollbackTransaction(): void
     {
@@ -37,8 +35,7 @@ trait TransactionTrait
     }
 
     /**
-     * Подтвердить транзакцию
-     * @return void
+     * Подтвердить транзакцию.
      */
     protected function commitTransaction(): void
     {

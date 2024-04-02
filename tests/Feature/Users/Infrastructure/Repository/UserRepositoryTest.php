@@ -36,7 +36,7 @@ class UserRepositoryTest extends WebTestCase
         parent::tearDown();
     }
 
-    public function test_user_added_successfully(): void
+    public function testUserAddedSuccessfully(): void
     {
         // prepare
         $user = $this->userFakeFactory->create();
@@ -45,11 +45,11 @@ class UserRepositoryTest extends WebTestCase
         $this->userRepository->add($user);
         $createdUser = $this->userRepository->findById($user->getUlid());
 
-        //assert
+        // assert
         $this->assertEquals($user->getUlid(), $createdUser->getUlid());
     }
 
-    public function test_user_found_by_email_successfully(): void
+    public function testUserFoundByEmailSuccessfully(): void
     {
         // prepare
         $user = $this->userFakeFactory->create();
@@ -58,7 +58,7 @@ class UserRepositoryTest extends WebTestCase
         $this->userRepository->add($user);
         $createdUser = $this->userRepository->findByEmail($user->getEmail());
 
-        //assert
+        // assert
         $this->assertEquals($user->getUlid(), $createdUser->getUlid());
     }
 }

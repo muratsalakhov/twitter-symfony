@@ -13,8 +13,7 @@ class UserFakeFactory
     public function __construct(
         private readonly UserFactory $userFactory,
         private readonly Generator $faker
-    ) {
-    }
+    ) {}
 
     public function create(?string $name = null, ?string $email = null, ?string $password = null): User
     {
