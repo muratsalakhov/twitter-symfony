@@ -1,0 +1,36 @@
+name: PHP CS Fixer with Docker
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  php-cs-fixer:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Compose
+        run: |
+          sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+
+      - name: Build container
+        run: docker-compose -f ./docker/docker-compose.yml build
+
+      - name: Run PHP CS Fixer
+        run: docker-compose -f ./docker/docker-compose.yml exec -T php-fpm vendor/bin/php-cs-fixer fix --dry-run --diff --verbose
+
+      - name: Cache PHP CS Fixer
+        uses: actions/cache@v2
+        with:
+          path: ~/.composer/cache
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
