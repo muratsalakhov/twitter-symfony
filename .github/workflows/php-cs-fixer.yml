@@ -1,4 +1,4 @@
-name: PHP CS Fixer with Docker
+name: PHP CS Fixer
 
 on:
   push:
@@ -16,18 +16,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set up Docker Compose
-        run: |
-          sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-          sudo chmod +x /usr/local/bin/docker-compose
+      - name: Setup PHP with extensions
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, xml
+          tools: composer, php-cs-fixer
 
-      - name: Build container
-        run: docker-compose -f ./docker/docker-compose.yml build
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
 
       - name: Run PHP CS Fixer
-        run: docker-compose -f ./docker/docker-compose.yml exec -T php-fpm vendor/bin/php-cs-fixer fix --dry-run --diff --verbose
+        run: vendor/bin/php-cs-fixer fix --dry-run --diff --verbose
 
-      - name: Cache PHP CS Fixer
+      - name: Cache dependencies
         uses: actions/cache@v2
         with:
           path: ~/.composer/cache
