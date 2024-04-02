@@ -16,6 +16,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Prepare .env file
+        run: cp .env.test .env
+
       - name: Setup PHP with extensions
         uses: shivammathur/setup-php@v2
         with:
