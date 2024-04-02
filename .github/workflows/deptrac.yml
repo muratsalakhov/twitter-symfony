@@ -1,0 +1,46 @@
+name: PHP CS Fixer
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deptrac-layers:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup
+        uses: ./.github/actions/static-analysis-setup
+
+      - name: Run deptrac analyze layers
+        run: vendor/bin/deptrac analyze --config-file=deptrac-layers.yaml
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.composer/cache
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+  deptrac-modules:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup
+        uses: ./.github/actions/static-analysis-setup
+
+      - name: Run deptrac analyze modules
+        run: vendor/bin/deptrac analyze --config-file=deptrac-modules.yaml
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.composer/cache
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
