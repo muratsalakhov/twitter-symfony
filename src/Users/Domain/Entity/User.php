@@ -6,7 +6,6 @@ namespace App\Users\Domain\Entity;
 
 use App\Shared\Domain\Security\AuthUserInterface;
 use App\Shared\Domain\Service\UlidService;
-use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -27,14 +26,14 @@ class User implements AuthUserInterface
     private string $password;
 
     #[ORM\Column(type: 'datetime_immutable')]
-    private DateTimeImmutable $registeredAt;
+    private \DateTimeImmutable $registeredAt;
 
     public function __construct(string $name, string $email)
     {
         $this->ulid = UlidService::generate();
         $this->name = $name;
         $this->email = $email;
-        $this->registeredAt = new DateTimeImmutable();
+        $this->registeredAt = new \DateTimeImmutable();
     }
 
     public function getUlid(): string
@@ -72,7 +71,7 @@ class User implements AuthUserInterface
         $this->password = $password;
     }
 
-    public function getRegisteredAt(): DateTimeImmutable
+    public function getRegisteredAt(): \DateTimeImmutable
     {
         return $this->registeredAt;
     }

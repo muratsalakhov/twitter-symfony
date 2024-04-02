@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\Tools;
 
-use JsonException;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -16,8 +15,7 @@ trait RequestTrait
     protected KernelBrowser $client;
 
     /**
-     * Инициализация клиента для запросов
-     * @return void
+     * Инициализация клиента для запросов.
      */
     public function initClient(): void
     {
@@ -25,8 +23,9 @@ trait RequestTrait
     }
 
     /**
-     * Сформировать json строку
-     * @throws JsonException
+     * Сформировать json строку.
+     *
+     * @throws \JsonException
      */
     protected function makeJsonString(array $data): string
     {
@@ -35,10 +34,8 @@ trait RequestTrait
 
     /**
      * Выполнить post запрос
-     * @param string $url
-     * @param array $data
-     * @return Crawler
-     * @throws JsonException
+     *
+     * @throws \JsonException
      */
     protected function post(string $url, array $data): Crawler
     {
@@ -52,10 +49,8 @@ trait RequestTrait
 
     /**
      * Выполнить get запрос
-     * @param string $url
-     * @param array $data
-     * @return Crawler
-     * @throws JsonException
+     *
+     * @throws \JsonException
      */
     protected function get(string $url, array $data): Crawler
     {
@@ -68,9 +63,9 @@ trait RequestTrait
     }
 
     /**
-     * Получить содержимое ответа в виде массива
-     * @return array
-     * @throws JsonException
+     * Получить содержимое ответа в виде массива.
+     *
+     * @throws \JsonException
      */
     protected function getResponseData(): array
     {
@@ -78,8 +73,7 @@ trait RequestTrait
     }
 
     /**
-     * Получить содержимое ответа в виде строки
-     * @return string
+     * Получить содержимое ответа в виде строки.
      */
     protected function getResponseRaw(): string
     {

@@ -12,3 +12,9 @@ create-migration:
 
 migrate:
 	docker-compose -f ./docker/docker-compose.yml exec php-fpm php bin/console doctrine:migrations:migrate
+
+php-cs-fixer:
+	docker-compose -f ./docker/docker-compose.yml exec php-fpm vendor/bin/php-cs-fixer fix
+
+php-cs-fixer-diff:
+	docker-compose -f ./docker/docker-compose.yml exec php-fpm vendor/bin/php-cs-fixer fix --dry-run --diff

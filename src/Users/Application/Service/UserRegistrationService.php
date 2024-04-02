@@ -11,9 +11,7 @@ use App\Users\Domain\Repository\UserRepositoryInterface;
 
 class UserRegistrationService implements UserRegistrationServiceInterface
 {
-    public function __construct(private UserRepositoryInterface $userRepository, private UserFactory $userFactory)
-    {
-    }
+    public function __construct(private UserRepositoryInterface $userRepository, private UserFactory $userFactory) {}
 
     /**
      * @throws UserRegistrationException

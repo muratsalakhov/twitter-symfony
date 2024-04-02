@@ -37,7 +37,7 @@ class AuthControllerTest extends WebTestCase
         parent::tearDown();
     }
 
-    public function test_register(): void
+    public function testRegister(): void
     {
         $name = $this->getFaker()->name();
         $email = $this->getFaker()->email();
@@ -58,7 +58,7 @@ class AuthControllerTest extends WebTestCase
         $this->assertEquals($email, $data['email']);
     }
 
-    public function test_login(): void
+    public function testLogin(): void
     {
         $testPassword = $this->getFaker()->password();
 
@@ -78,7 +78,7 @@ class AuthControllerTest extends WebTestCase
         $this->assertIsString($data['token']);
     }
 
-    public function test_failed_login(): void
+    public function testFailedLogin(): void
     {
         $user = $this->userFakeFactory->create();
         $this->userRepository->add($user);

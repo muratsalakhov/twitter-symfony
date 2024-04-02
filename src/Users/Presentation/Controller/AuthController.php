@@ -6,7 +6,6 @@ use App\Shared\Presentation\Controller\AbstractController;
 use App\Shared\Presentation\Exception\ValidationException;
 use App\Users\Application\Service\UserRegistrationServiceInterface;
 use App\Users\Presentation\Resource\UserResource;
-use JsonException;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,12 +21,11 @@ class AuthController extends AbstractController
         private readonly JWTTokenManagerInterface $jwtTokenManager,
         private readonly UserProviderInterface $userProvider,
         private readonly UserPasswordHasherInterface $passwordHasher,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws ValidationException
-     * @throws JsonException
+     * @throws \JsonException
      */
     #[Route('/api/auth/register', methods: ['POST'])]
     public function register(Request $request): Response
@@ -47,7 +45,7 @@ class AuthController extends AbstractController
 
     /**
      * @throws ValidationException
-     * @throws JsonException
+     * @throws \JsonException
      */
     #[Route('/api/auth/login', methods: ['POST'])]
     public function login(Request $request): Response

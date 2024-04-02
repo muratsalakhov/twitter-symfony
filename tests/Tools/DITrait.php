@@ -11,6 +11,7 @@ trait DITrait
 {
     /**
      * Получить сервис через DI контейнер
+     *
      * @template T
      *
      * @param class-string<T> $service
