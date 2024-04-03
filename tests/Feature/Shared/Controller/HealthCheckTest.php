@@ -2,13 +2,14 @@
 
 namespace App\Tests\Feature\Shared\Controller;
 
+use JsonException;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Request;
 
 class HealthCheckTest extends WebTestCase
 {
     /**
-     * @throws \JsonException
+     * @throws JsonException
      */
     public function testRequestSuccessful(): void
     {
