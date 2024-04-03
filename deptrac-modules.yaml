@@ -13,6 +13,12 @@ parameters:
       collectors:
         - type: directory
           regex: /src/Users/.*
+    - name: Posts
+      collectors:
+        - type: directory
+          regex: /src/Posts/.*
   ruleset:
     Users:
+      - Shared
+    Posts:
       - Shared
