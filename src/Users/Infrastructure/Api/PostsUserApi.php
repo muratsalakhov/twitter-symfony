@@ -6,12 +6,15 @@ namespace App\Users\Infrastructure\Api;
 
 use App\Posts\Infrastructure\Adapter\UserApiInterface;
 use App\Posts\Infrastructure\Adapter\UserDTOInterface;
+use App\Users\Application\Factory\UserFakeFactory;
 use App\Users\Infrastructure\Repository\UserRepository;
 
 final readonly class PostsUserApi implements UserApiInterface
 {
-    public function __construct(private UserRepository $userRepository)
-    {
+    public function __construct(
+        private UserRepository $userRepository,
+        private UserFakeFactory $userFakeFactory
+    ) {
     }
 
     public function getById(string $id): ?UserDTOInterface
@@ -22,6 +25,13 @@ final readonly class PostsUserApi implements UserApiInterface
             return null;
         }
 
-        return new PostsUserDTO($user->getId, $user->getName());
+        return new PostsUserDTO($user->getUlid(), $user->getName());
+    }
+
+    public function createFake(): UserDTOInterface
+    {
+        $fakeUser = $this->userFakeFactory->create();
+        $this->userRepository->add($fakeUser);
+        return new PostsUserDTO($fakeUser->getUlid(), $fakeUser->getName());
     }
 }

@@ -7,4 +7,6 @@ namespace App\Posts\Infrastructure\Adapter;
 interface UserApiInterface
 {
     public function getById(string $id): ?UserDTOInterface;
+
+    public function createFake(): UserDTOInterface;
 }
