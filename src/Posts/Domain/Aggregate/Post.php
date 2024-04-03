@@ -65,4 +65,11 @@ class Post
     {
         return $this->author;
     }
+
+    public function setAuthor(Author $author): Post
+    {
+        $this->author = $author;
+        $this->authorId = $author->getId();
+        return $this;
+    }
 }
