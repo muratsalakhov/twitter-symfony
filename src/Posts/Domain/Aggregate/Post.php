@@ -32,11 +32,11 @@ class Post
 
     // private array $comments; todo
 
-    public function __construct(string $text, string $authorId, Author $author)
+    public function __construct(string $text, Author $author)
     {
         $this->id = UlidService::generate();
         $this->text = $text;
-        $this->authorId = $authorId;
+        $this->authorId = $author->getId();
         $this->author = $author;
         $this->createdAt = new DateTimeImmutable();
     }
