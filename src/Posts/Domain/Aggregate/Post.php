@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Post
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'ulid')]
     private string $id;
 
     #[ORM\Column(type: 'string')]
