@@ -6,8 +6,6 @@ namespace App\Tests\Feature\Posts\Infrastructure\Repository;
 
 use App\Posts\Application\Factory\CommentFakeFactory;
 use App\Posts\Application\Factory\PostFakeFactory;
-use App\Posts\Domain\Aggregate\Post;
-use App\Posts\Domain\ValueObject\Author;
 use App\Posts\Infrastructure\Adapter\UserAdapter;
 use App\Posts\Infrastructure\Repository\CommentRepository;
 use App\Tests\Tools\DITrait;
@@ -36,12 +34,12 @@ class CommentRepositoryTest extends WebTestCase
         $this->postFakeFactory = $this->getService(PostFakeFactory::class);
         $this->userAdapter = $this->getService(UserAdapter::class);
 
-        //$this->beginTransaction();
+        // $this->beginTransaction();
     }
 
     protected function tearDown(): void
     {
-        //$this->rollbackTransaction();
+        // $this->rollbackTransaction();
 
         parent::tearDown();
     }

@@ -17,8 +17,7 @@ class CommentFakeFactory
         private Generator $faker,
         private AuthorFakeFactory $authorFakeFactory,
         private PostFakeFactory $postFakeFactory
-    ) {
-    }
+    ) {}
 
     public function create(?string $text = null, ?Author $author = null, ?Post $post = null): Comment
     {

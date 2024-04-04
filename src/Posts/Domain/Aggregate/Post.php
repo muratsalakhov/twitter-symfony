@@ -8,8 +8,8 @@ use App\Posts\Domain\Entity\Comment;
 use App\Posts\Domain\ValueObject\Author;
 use App\Shared\Domain\Service\UlidService;
 use DateTimeImmutable;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]

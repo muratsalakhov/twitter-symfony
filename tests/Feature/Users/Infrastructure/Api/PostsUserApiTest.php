@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests\Feature\Users\Infrastructure\Api;
 
-use App\Posts\Infrastructure\Adapter\UserDTOInterface;
+use App\Users\Application\Factory\UserFakeFactory;
 use App\Users\Domain\Entity\User;
 use App\Users\Infrastructure\Api\PostsUserApi;
 use App\Users\Infrastructure\Repository\UserRepository;
-use App\Users\Application\Factory\UserFakeFactory;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class PostsUserApiTest extends WebTestCase

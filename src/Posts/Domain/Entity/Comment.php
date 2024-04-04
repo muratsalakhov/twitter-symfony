@@ -58,9 +58,6 @@ class Comment
         return $this->createdAt;
     }
 
-    /**
-     * @return string
-     */
     public function getAuthorId(): string
     {
         return $this->authorId;
