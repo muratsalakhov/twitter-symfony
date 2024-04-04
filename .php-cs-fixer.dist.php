@@ -27,6 +27,7 @@ return (new PhpCsFixer\Config())
         'ordered_imports' => true,
         'trailing_comma_in_multiline' => true,
         'array_syntax' => ['syntax' => 'short'],
+        'global_namespace_import' => true
     ])
     ->setFinder($finder)
     ->setRiskyAllowed(true)

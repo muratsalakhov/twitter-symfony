@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Tools;
 
+use JsonException;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Component\DomCrawler\Crawler;
 
@@ -25,7 +26,7 @@ trait RequestTrait
     /**
      * Сформировать json строку.
      *
-     * @throws \JsonException
+     * @throws JsonException
      */
     protected function makeJsonString(array $data): string
     {
@@ -35,7 +36,7 @@ trait RequestTrait
     /**
      * Выполнить post запрос
      *
-     * @throws \JsonException
+     * @throws JsonException
      */
     protected function post(string $url, array $data): Crawler
     {
@@ -50,7 +51,7 @@ trait RequestTrait
     /**
      * Выполнить get запрос
      *
-     * @throws \JsonException
+     * @throws JsonException
      */
     protected function get(string $url, array $data): Crawler
     {
@@ -65,7 +66,7 @@ trait RequestTrait
     /**
      * Получить содержимое ответа в виде массива.
      *
-     * @throws \JsonException
+     * @throws JsonException
      */
     protected function getResponseData(): array
     {

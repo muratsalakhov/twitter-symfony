@@ -43,3 +43,7 @@ services:
     App\Users\Infrastructure\Repository\UserRepository:
         tags:
             - { name: 'doctrine.repository_service' }
+
+    # модуль Posts
+    App\Posts\Infrastructure\Repository\AuthorRepository:
+        public: true

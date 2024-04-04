@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Shared\Presentation\Trait;
 
 use App\Shared\Presentation\Exception\ValidationException;
+use JsonException;
 use Rakit\Validation\Validator;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -12,7 +13,7 @@ trait ValidationTrait
 {
     /**
      * @throws ValidationException
-     * @throws \JsonException
+     * @throws JsonException
      */
     protected function validate(Request $request, array $rules, array $messages = []): array
     {
@@ -33,7 +34,7 @@ trait ValidationTrait
     }
 
     /**
-     * @throws \JsonException
+     * @throws JsonException
      */
     protected function getRequestData(Request $request): array
     {
