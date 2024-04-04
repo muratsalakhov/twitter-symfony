@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace App\Posts\Domain\Aggregate;
 
+use App\Posts\Domain\Entity\Comment;
 use App\Posts\Domain\ValueObject\Author;
 use App\Shared\Domain\Service\UlidService;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -28,9 +31,10 @@ class Post
 
     private Author $author; // todo
 
-    // private array $likes; todo
+    #[ORM\OneToMany(targetEntity: Comment::class, mappedBy: 'post')]
+    private Collection $comments;
 
-    // private array $comments; todo
+    // private array $likes; todo
 
     public function __construct(string $text, Author $author)
     {
@@ -39,6 +43,7 @@ class Post
         $this->authorId = $author->getId();
         $this->author = $author;
         $this->createdAt = new DateTimeImmutable();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): string
@@ -72,5 +77,20 @@ class Post
         $this->authorId = $author->getId();
 
         return $this;
+    }
+
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): void
+    {
+        $this->comments->add($comment);
+    }
+
+    public function removeComment(Comment $comment): void
+    {
+        $this->comments->removeElement($comment);
     }
 }
