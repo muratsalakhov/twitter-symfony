@@ -8,9 +8,7 @@ use App\Posts\Domain\ValueObject\Author;
 
 readonly class UserAdapter
 {
-    public function __construct(private UserApiInterface $api)
-    {
-    }
+    public function __construct(private UserApiInterface $api) {}
 
     public function getAuthorById(string $id): ?Author
     {

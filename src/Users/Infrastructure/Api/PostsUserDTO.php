@@ -11,8 +11,7 @@ final readonly class PostsUserDTO implements UserDTOInterface
     public function __construct(
         public string $id,
         public string $name
-    ) {
-    }
+    ) {}
 
     public function getId(): string
     {

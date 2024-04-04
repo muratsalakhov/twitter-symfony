@@ -15,8 +15,7 @@ class PostFakeFactory
         private readonly PostFactory $postFactory,
         private readonly Generator $faker,
         private readonly AuthorFakeFactory $authorFakeFactory
-    ) {
-    }
+    ) {}
 
     public function create(?string $text = null, ?Author $author = null): Post
     {

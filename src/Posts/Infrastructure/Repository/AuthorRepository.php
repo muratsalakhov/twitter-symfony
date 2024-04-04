@@ -10,9 +10,7 @@ use App\Posts\Infrastructure\Adapter\UserAdapter;
 
 class AuthorRepository implements AuthorRepositoryInterface
 {
-    public function __construct(private readonly UserAdapter $userAdapter)
-    {
-    }
+    public function __construct(private readonly UserAdapter $userAdapter) {}
 
     public function findById(string $id): ?Author
     {

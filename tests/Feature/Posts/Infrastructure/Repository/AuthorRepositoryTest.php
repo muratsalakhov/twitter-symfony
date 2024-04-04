@@ -4,13 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Feature\Posts\Infrastructure\Repository;
 
-use App\Posts\Application\Factory\AuthorFakeFactory;
-use App\Posts\Application\Factory\PostFakeFactory;
-use App\Posts\Domain\Aggregate\Post;
-use App\Posts\Domain\ValueObject\Author;
 use App\Posts\Infrastructure\Adapter\UserAdapter;
 use App\Posts\Infrastructure\Repository\AuthorRepository;
-use App\Posts\Infrastructure\Repository\PostRepository;
 use App\Tests\Tools\DITrait;
 use App\Tests\Tools\TransactionTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;

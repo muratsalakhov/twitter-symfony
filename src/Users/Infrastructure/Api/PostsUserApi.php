@@ -14,8 +14,7 @@ final readonly class PostsUserApi implements UserApiInterface
     public function __construct(
         private UserRepository $userRepository,
         private UserFakeFactory $userFakeFactory
-    ) {
-    }
+    ) {}
 
     public function getById(string $id): ?UserDTOInterface
     {
@@ -32,6 +31,7 @@ final readonly class PostsUserApi implements UserApiInterface
     {
         $fakeUser = $this->userFakeFactory->create();
         $this->userRepository->add($fakeUser);
+
         return new PostsUserDTO($fakeUser->getUlid(), $fakeUser->getName());
     }
 }

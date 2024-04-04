@@ -9,9 +9,7 @@ use Faker\Generator;
 
 class AuthorFakeFactory
 {
-    public function __construct(private readonly Generator $faker)
-    {
-    }
+    public function __construct(private readonly Generator $faker) {}
 
     public function create(?string $id = null, ?string $name = null): Author
     {

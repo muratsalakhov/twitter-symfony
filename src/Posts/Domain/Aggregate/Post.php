@@ -70,6 +70,7 @@ class Post
     {
         $this->author = $author;
         $this->authorId = $author->getId();
+
         return $this;
     }
 }
